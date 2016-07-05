@@ -10,22 +10,20 @@ class AuthenticateController{
             $response["code"] = "1";
             $response["message"] = "você esta logado";
             return json_encode($response);
-            # $app->stop();
-        #throw new Exception("você esta logado");
+            #throw new Exception("você esta logado");
         }else{
         if ((empty($data->username)) or (empty($data->password))){
         throw new Exception("Login ou senha precisam ser preenchidos");
         }
-        #require_once 'helpers/helperPassword.php';
-        #$password = verify($data->password);
+        
+        
         
         
         #verifica usario no banco
         $db_user =  User::find('all', array('conditions' => array('username = ? AND password = ? ', $data->username, hashpassword($data->password)))); #->to_json() $data->id
        
         #fim
-        
-       # if($password != 0){
+       
             
             if ($db_user!= null) {
                 //array push result
@@ -36,35 +34,24 @@ class AuthenticateController{
                     
                      $token = generateToken($db_user);
                        
-                        //$db_user->token =$token;
+                        
                     #fazer o login so add apikey e session
                         $this->doLogin($db_user);
                         unset($user->password);
                         unset($user->password_salt);
                         
-                    #echo json_encode($result);
-                    
+                   
                      $response["success"] = "true";
                      $response["code"] = "1";
                      $response["message"] = "Sucesso - Bem vindo";
                      $response["result"] = $result;
-                        //return $token;
-                    // return '{"result": ' . json_encode($result) .'}';
-                     return json_encode($response);
-                     //return '{"error":[{"text":"logado"}]}';
                     
-             
-                #print_r($db_user);
-                #return db_user;
+                     return json_encode($response);
+                  
             }
             else
                 throw new Exception("Erro ao efetuar login. Usuário/Senha incorretos");
-            
-            #$status = "correto";
-       # }else{
-            #$status = "error";
-        #}
-        #return $status;
+         
         return false;
         }
     }
@@ -113,11 +100,12 @@ class AuthenticateController{
         $_SESSION["token"] = null;
         $_COOKIE['api-key'] = null;
           $app = \Slim\Slim::getInstance();
+          //response
             $response["success"] = "true";
             $response["code"] = "1";
             $response["message"] = "Desconectado";
             return json_encode($response);
-                 // return '{"result": [{ "menssage": "logout"}]}';
+             
           $app->stop();
     }
     
@@ -138,10 +126,6 @@ class AuthenticateController{
         $response["api_key"]  = $this->getApikey();
         return json_encode($response);
        
-        //return '{"result": [{ "id": '.$userid . ' , "nome":  "'. $username .'" , "apikey": '. $apikey .'" , "api_key": '. $api_key .'" , "token": '. $token .'}]}';
-        
-        # return json_encode('{"result": [{ "id": '.$userid . ' , "nome": '. $username .' , "api_key": '. $apikey .'}]}');
-        #return json_encode("id: ". $userid . "-nome: ". $username ." - api_key: ". $apikey);
     }
     
     function post_register($data){
@@ -153,17 +137,13 @@ class AuthenticateController{
         $response["username"] = $data->username;
         $response["message"] = "Usuario registrado";
         return json_encode($response);
-        //return "register: ". $username . " | password: ". $password;
     }
     
       protected function doLogin($user) {
         
         /* Adiciona a data/ip do login */
-        #$sql = "UPDATE usuarios SET lastLogin=now(),lastIp=:lastIp WHERE id=:id";
-        #$stmt = DB::prepare($sql);
         #$stmt->bindParam("lastIp",$_SERVER['REMOTE_ADDR']);
-        #$stmt->bindParam("id", $usuario->id);
-        #$stmt->execute();
+   
         foreach($user as $data) {
             $_SESSION["login_id"]= $data->id;
             $_SESSION["login_name"]= $data->username;
@@ -174,10 +154,6 @@ class AuthenticateController{
             $_SESSION["api_key"] = $this->getApikey();
             setcookie('api-key', $this->getApikey(), time() + (86400 * 30), "/"); // 86400 = 1 day + 3600,);
         }
-        
-        #$_SESSION["login_id"] = 1;# $user->id;
-        #$_SESSION["login_name"] = "joey";#$user->nome;
-        
-       #echo  $_SESSION["login_id"] . "||||" . $_SESSION["login_name"];
+
     }
 }
