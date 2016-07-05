@@ -52,7 +52,7 @@ class AuthenticateController{
                      $response["code"] = "1";
                      $response["message"] = "Sucesso - Bem vindo ";
                      //para enviar dados atuais 
-                     $newresult = $this->postPerfil($data);
+                     $newresult = $this->getPerfile();
                      $response["result"] = $newresult;
                     
                      return json_encode($response);
@@ -82,6 +82,7 @@ class AuthenticateController{
           
         return $apikey;
     }
+    
     
     function get_token(){
         $response["success"] = "true";
@@ -118,13 +119,25 @@ class AuthenticateController{
           $app->stop();
     }
     
-    public function post_perfil($data) {
-         
+    public function get_perfile() {
+        $profile = $this->getPerfile();
+        #$sql = User::find( $_SESSION["login_id"]); && $profile->id == $_SESSION["login_id"]
+        if($profile != null){
+            $response["success"] = "true";
+            $response["code"] = "1";
+            $response["message"] = "Sucesso ao obter perfil";
+            $response["result"] = $profile;
+        }else{
+            $response["success"] = "false";
+            $response["code"] = "0";
+            $response["message"] = "Error ao obter perfil".$profile->id.$data->id;
+        }
+        return json_encode($response);
     }
     
-    public function postPerfil($data) {
+    public function getPerfile() {
          $result = array();
-         $sql = User::find('all', array('conditions' => array('id = ?', $data->id)));
+         $sql = User::find('all', array('conditions' => array('id = ?', $userid = $_SESSION["login_id"])));
          #$sql = User::find($data->id);
          foreach($sql as $data) {
                     array_push($result, $data->to_array()); //using to_array instead of to_json
