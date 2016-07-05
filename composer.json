@@ -3,6 +3,9 @@
     "name": "joeymetal/restful-sdti",
     "description": "framework restful utilizando algumas das principais tecnologias como slim framework, phpa-ctiverecord, phinx e para desenvolvimento phpunit e mylogphp",
     "type": "project",
+    "keywords": ["restful","framework"],
+    "homepage": "https://github.com/joeymetal/restful-sdti.git"
+    "license": "MIT",
     "authors": [ 
         {
             "name": "Joey Hammett",

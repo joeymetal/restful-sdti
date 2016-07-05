@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "19a3038dc4ac86cc908210f501dc46d0",
-    "content-hash": "13251b3747c1af8b8bcaeeb25c85979e",
+    "hash": "cad1deecf20abab68cbb2beff4882844",
+    "content-hash": "e6d318c65f25c2b2cea3368bbe18de78",
     "packages": [
         {
             "name": "llagerlof/mylogphp",
