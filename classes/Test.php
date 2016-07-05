@@ -8,7 +8,7 @@
      private $updated;
      
   //Contruct
-  public Test(){
+  function __contruct() {
       
   }
   

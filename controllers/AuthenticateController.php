@@ -28,23 +28,32 @@ class AuthenticateController{
             if ($db_user!= null) {
                 //array push result
                 $result = array();
+                
                 foreach($db_user as $data) {
+                     //update ip e login 
+                    $sql = User::find($data->id);
+                    $sql->update_attributes(array('last_ip' => $_SERVER['REMOTE_ADDR'], 'last_login' => date("Y-m-d  H:i:s")));
+                    $sql->save();
+                    
                     array_push($result, $data->to_array()); //using to_array instead of to_json
                     }
                     
                      $token = generateToken($db_user);
-                       
-                        
+                      
+                     
+                
                     #fazer o login so add apikey e session
                         $this->doLogin($db_user);
-                        unset($user->password);
-                        unset($user->password_salt);
+                        unset($result->password);
+                        unset($result->password_salt);
                         
-                   
+                        unset($result->last_ip);
                      $response["success"] = "true";
                      $response["code"] = "1";
-                     $response["message"] = "Sucesso - Bem vindo";
-                     $response["result"] = $result;
+                     $response["message"] = "Sucesso - Bem vindo ";
+                     //para enviar dados atuais 
+                     $newresult = $this->postPerfil($data);
+                     $response["result"] = $newresult;
                     
                      return json_encode($response);
                   
@@ -109,9 +118,18 @@ class AuthenticateController{
           $app->stop();
     }
     
-    public function post_perfil() {
-        
-        
+    public function post_perfil($data) {
+         
+    }
+    
+    public function postPerfil($data) {
+         $result = array();
+         $sql = User::find('all', array('conditions' => array('id = ?', $data->id)));
+         #$sql = User::find($data->id);
+         foreach($sql as $data) {
+                    array_push($result, $data->to_array()); //using to_array instead of to_json
+                    }
+        return $result;
     }
     
     
