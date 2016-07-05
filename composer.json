@@ -1,0 +1,24 @@
+{
+    
+    "name": "joeymetal/restful-sdti",
+    "description": "framework restful utilizando algumas das principais tecnologias como slim framework, phpa-ctiverecord, phinx e para desenvolvimento phpunit e mylogphp",
+    "type": "project",
+    "authors": [ 
+        {
+            "name": "Joey Hammett",
+            "email": "joey@sdti.net.br"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "slim/slim": "2.*",
+        "php-activerecord/php-activerecord" : "dev-master",
+        "robmorgan/phinx": "^0.5.3",
+        "llagerlof/mylogphp": "dev-master"
+    },
+    "require-dev" : {
+        
+        "phpunit/phpunit": "4.*"
+        
+    }
+}
