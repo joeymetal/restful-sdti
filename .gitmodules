@@ -1,0 +1,4 @@
+
+[submodule "MyLogPHP"]
+	path = MyLogPHP
+	url = https://github.com/llagerlof/MyLogPHP.git

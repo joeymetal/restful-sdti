@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cad1deecf20abab68cbb2beff4882844",
+    "hash": "84b916b2670f5623db74fdf33f56385f",
     "content-hash": "e6d318c65f25c2b2cea3368bbe18de78",
     "packages": [
         {
@@ -56,12 +56,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jpfuentes2/php-activerecord.git",
-                "reference": "f56c77eace86b5ada13cb9ca26ce535978fe26b2"
+                "reference": "abc99ed97a5d1c6693aff252441b0530034cbddb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jpfuentes2/php-activerecord/zipball/f56c77eace86b5ada13cb9ca26ce535978fe26b2",
-                "reference": "f56c77eace86b5ada13cb9ca26ce535978fe26b2",
+                "url": "https://api.github.com/repos/jpfuentes2/php-activerecord/zipball/abc99ed97a5d1c6693aff252441b0530034cbddb",
+                "reference": "abc99ed97a5d1c6693aff252441b0530034cbddb",
                 "shasum": ""
             },
             "require": {
@@ -88,7 +88,7 @@
                 "activerecord",
                 "orm"
             ],
-            "time": "2016-06-22 07:27:59"
+            "time": "2016-07-13 10:07:51"
         },
         {
             "name": "robmorgan/phinx",
