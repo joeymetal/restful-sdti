@@ -23,5 +23,9 @@
         
         "phpunit/phpunit": "4.*"
         
+    },
+    "autoload": {
+       
+        
     }
 }
